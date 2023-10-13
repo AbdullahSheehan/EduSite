@@ -11,12 +11,14 @@
         Educational Website
     {% endblock title %}</title>
 </head>
-<body>
+<body style="min-height: 100vh; display: flex; flex-direction: column;">
     {% include "navbar.html" %}
-    {% block body %}
+    <div class="container">
+        {% block body %}
       
     {% endblock body %}
-    <footer class="mt-5">
+    </div>
+    <footer class="mt-5 mt-auto">
         <div class="bg-secondary py-3 text-white text-center">Developed By Abdullah Sheehan!</div>
     </footer>
 </body>
