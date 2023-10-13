@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
-
+from EduSite import views
 urlpatterns = [
+    path('', views.index, name="homepage"),
     path('admin/', admin.site.urls),
     path('articles/', include('AppBlog.urls')),
     path('forum/', include('AppForum.urls')),
