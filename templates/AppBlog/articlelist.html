@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load custom_filters %}
+{% load static %}
+{% block title %}
+  Articles by our Teachers
+{% endblock title %}
+{% block body %}
+  {% for article in articles %}
+    <div class="card mb-4">
+      <div class="row">
+        <div class="col-sm-8">
+          <img class="w-100 h-100 rounded-start-3" src="/media/{{article.poster}}" alt="{{article.title}}" srcset="">
+        </div>
+        <div class="col-sm-4 pt-4">
+          <small class="w-100 text-danger fw-bold mb-2">{{article.category}}</small>
+          <div class="card-header w-100 bg-transparent border-0 fs-4 mb-2 fw-bold">{{article.title}}</div>
+          <div class="card-body w-100">
+            <p>{{article.content|ellipsis}} <a href="{% url 'AppBlog:articledetails' slug=article.slug %}" class="link-danger">Read More >></a></p>
+            <p><a href="" class="text-danger text-decoration-none">{{article.author}} ⸱ </a>{{article.publish|date:"M d, Y"}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock body %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}
+  {{article.title}}
+{% endblock title %}
+{% block body %}
+  <small class="mb-3">{{article.category}}</small>
+  <h3 class="mb-4">{{article.title}}</h3>
+  <div class="d-flex gap-3 mb-4">
+    <img src="/media/{{article.author.teacherprofile.profilepic}}" width="50px" height="50px" alt="" srcset="">
+    <div class="">
+        <h5 class="mb-1">{{article.author}}</h5>
+        <small>{{article.publish|date:"M d, Y"}}</small>
+    </div>
+  </div>
+  <img class="w-75 mb-3" src="/media/{{article.poster}}" alt="" srcset="">
+  <p>{{article.content|linebreaks}}</p>
+
+  {% endblock body %}
