@@ -1,10 +1,12 @@
 from django.shortcuts import render, HttpResponseRedirect
 from .forms import ArticleForm, AddCategory
 from .models import Article
+from AppLogin.decorators import student_required, teacher_required
 from uuid import uuid4
 from django.urls import reverse
 from django.views.generic import ListView, DetailView
 # Create your views here.
+@teacher_required()
 def createArticle(req):
     form = AddCategory()
     if req.method == 'POST':
