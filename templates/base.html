@@ -9,11 +9,26 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' integrity='sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==' crossorigin='anonymous' referrerpolicy='no-referrer' />
     <title>{% block title %}
         Educational Website
-    {% endblock title %}</title>
+    {% endblock title %} | Edusite</title>
 </head>
 <body style="min-height: 100vh; display: flex; flex-direction: column;">
     {% include "navbar.html" %}
+
     <div class="container">
+        <!-- Div to show warnings, success, info messages -->
+        <div class="messages container mt-2">
+            {% if messages %}
+              {% for message in messages %}
+                <div {% if message.tags %}
+                class="alert alert-{{message.tags}} alert-dismissible fade show"
+                {% endif %}
+                role="alert">
+                    {{message}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              {% endfor %}
+            {% endif %}
+        </div>
         {% block body %}
       
     {% endblock body %}

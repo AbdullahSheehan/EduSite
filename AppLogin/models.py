@@ -72,27 +72,31 @@ class User(AbstractBaseUser, PermissionsMixin):                         # Basic 
 
 class StudnetProfile(models.Model):                                     # Student Profile
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='studentprofile')
-    profilepic = models.ImageField(upload_to='students/', blank=True)
-    clas = models.IntegerField(blank=True)
-    institute = models.CharField(max_length=100, blank=True)
-    city = models.CharField(max_length=20, blank=True)
-    contact = models.CharField(max_length=15, blank=True)
+    profilepic = models.ImageField(upload_to='students/', blank=True, null=True)
+    clas = models.IntegerField(blank=True, null=True)
+    institute = models.CharField(max_length=100, blank=True, null=True)
+    city = models.CharField(max_length=20, blank=True, null=True)
+    contact = models.CharField(max_length=15, blank=True, null=True)
 
     date_joined = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"Student: {self.user.first_name} {self.user.last_name}"
+    
+    def is_complete(self):
+        return True if (self.clas and self.institute and self.city and self.contact) else False
 class TeacherProfile(models.Model):                                     # Teacher Profile
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='teacherprofile')
-    profilepic = models.ImageField(upload_to='teachers/', blank=True)
-    subject = models.CharField(max_length=50, blank=True)
-    contact = models.CharField(max_length=15, blank=True)
+    profilepic = models.ImageField(upload_to='teachers/', blank=True, null=True)
+    subject = models.CharField(max_length=50, blank=True, null=True)
+    contact = models.CharField(max_length=15, blank=True, null=True)
 
     date_joined = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"Teacher: {self.user.first_name} {self.user.last_name}"
-
+    def is_complete(self):
+        return True if (self.subject and self.contact) else False
 @receiver(post_save, sender=User)               # Creating a profile object when a user is created
 def create_profile(sender, instance, created, **kwargs):
     if created:

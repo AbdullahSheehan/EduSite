@@ -1,7 +1,8 @@
 from django import forms
 from django.forms import widgets
-from .models import User
+from .models import User, StudnetProfile, TeacherProfile
 from django.contrib.auth.forms import UserCreationForm
+
 class SignUpForm(UserCreationForm):
     choices = (
         ('', "Account Type"),
@@ -38,3 +39,12 @@ class SignUpForm(UserCreationForm):
             }),
 
         }
+
+class StudentProfileEdit(forms.ModelForm):
+    class Meta:
+        model = StudnetProfile
+        exclude = ['user']
+class TeacherProfileEdit(forms.ModelForm):
+    class Meta:
+        model = TeacherProfile
+        exclude = ['user']

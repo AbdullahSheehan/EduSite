@@ -4,5 +4,6 @@ app_name = 'AppLogin'
 urlpatterns = [
     path('signup/', views.signupUser, name='register'),
     path('login/', views.loginUser, name='login'),
-    path('logout/', views.logoutUser, name='logout')
+    path('logout/', views.logoutUser, name='logout'),
+    path('profile/', views.editprofileUser, name='editprofile'),
 ]
