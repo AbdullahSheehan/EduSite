@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}
+        {{user.first_name}} {{user.last_name}}
+{% endblock title %}
+{% block body %}
+<!-- Student User -->
+<div class="d-flex justify-content-between align-items-center">
+{% if user.is_student %}
+<table class="table table-bordered w-50">
+    <thead>
+        <th colspan="2">Personal Info</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>First Name</td>
+            <td>{{user.first_name}}</td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td>{{user.last_name}}</td>
+        </tr>
+        <tr>
+            <td>Email Address</td>
+            <td>{{user.email}}</td>
+        </tr>
+        <tr>
+            <td>Phone Number</td>
+            <td>{{profile.contact}}</td>
+        </tr>
+        <tr>
+            <td>Class</td>
+            <td>{{profile.clas}}</td>
+        </tr>
+        <tr>
+            <td>Institute</td>
+            <td>{{profile.institute}}</td>
+        </tr>
+        <tr>
+            <td>City</td>
+            <td>{{profile.city}}</td>
+        </tr>
+    </tbody>
+</table> 
+{% endif %}
+<!-- Teacher User -->
+{% if user.is_teacher %}
+<table class="table table-bordered w-50">
+    <thead>
+        <th colspan="2">Personal Info</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>First Name</td>
+            <td>{{user.first_name}}</td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td>{{user.last_name}}</td>
+        </tr>
+        <tr>
+            <td>Email Address</td>
+            <td>{{user.email}}</td>
+        </tr>
+        <tr>
+            <td>Phone Number</td>
+            <td>{{profile.contact}}</td>
+        </tr>
+        <tr>
+            <td>Subject</td>
+            <td>{{profile.subject}}</td>
+        </tr>
+        <tr>
+            <td>Institute</td>
+            <td>{{profile.institute}}</td>
+        </tr>
+        <tr>
+            <td>City</td>
+            <td>{{profile.city}}</td>
+        </tr>
+    </tbody>
+</table> 
+{% endif %}
+<img src="/media/{{profile.profilepic}}" alt="Profile Picture of {{user.first_name}} {{user.last_name}}" srcset="" width="300px" height="300px" class="rounded rounded-circle">
+</div>
+<a href="{% url 'AppLogin:editprofile' %}" class="btn btn-primary">Edit your profile!</a>
+{% endblock body %}

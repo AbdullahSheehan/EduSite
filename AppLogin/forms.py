@@ -44,7 +44,20 @@ class StudentProfileEdit(forms.ModelForm):
     class Meta:
         model = StudnetProfile
         exclude = ['user']
+        labels = {
+            'profilepic':"Change your profile picture!",
+            'clas':"Class",
+            'institute': 'Institution',
+            'city':'City',
+            'contact': 'Phone Number'
+        }
 class TeacherProfileEdit(forms.ModelForm):
     class Meta:
         model = TeacherProfile
         exclude = ['user']
+        labels = {
+            'profilepic':"Change your profile picture!",
+            'clas':"Class",
+            'subject': 'Preferred Subject',
+            'contact': 'Phone Number'
+        }
