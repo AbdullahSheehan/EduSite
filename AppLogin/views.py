@@ -36,14 +36,14 @@ def loginUser(req):
                         return HttpResponseRedirect(reverse('AppLogin:editprofile'))
                     else:
                         messages.success(req, f"Welcome {user.first_name} {user.last_name}!")
-                        return HttpResponseRedirect(reverse('AppLogin:profile'))
+                        return HttpResponseRedirect(reverse('homepage'))
                 elif(user.is_student):
                     if not StudnetProfile.objects.get(user=user).is_complete():
                         messages.warning(req, "Please complete your profile before you move on.")
                         return HttpResponseRedirect(reverse('AppLogin:editprofile'))
                     else:
                         messages.success(req, f"Welcome {user.first_name} {user.last_name}!")
-                        return HttpResponseRedirect(reverse('AppLogin:profile'))
+                        return HttpResponseRedirect(reverse('homepage'))
     return render (req,'AppLogin/loginUser.html', context={'form':form})
 @login_required
 def logoutUser(req):

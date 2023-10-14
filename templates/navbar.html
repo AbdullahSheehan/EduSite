@@ -21,8 +21,13 @@
               {{user.first_name}} {{user.last_name}}
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{% url 'AppForum:forumlist' %}">Forums</a></li>
               {% if user.is_teacher %}
-                <li><a class="dropdown-item" href="{% url 'AppBlog:createblog' %}">Publish an Article</a></li>
+              <li><a class="dropdown-item" href="{% url 'AppBlog:createblog' %}">Publish an Article</a></li>
+              {% endif %}
+              {% if user.is_student %}
+              <li><a class="dropdown-item" href="{% url 'AppForum:createforum' %}">Ask a Question</a></li>
+              <li><a class="dropdown-item" href="{% url 'AppForum:myquestions' %}">My Questions</a></li>
               {% endif %}
                 <li class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{% url 'AppLogin:profile' %}">Profile</a></li>

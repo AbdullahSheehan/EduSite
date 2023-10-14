@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+  Forums
+{% endblock title %}
+{% block body %}
+  <div class="card mb-4">
+    <h5 class="card-header w-100 py-3 px-5 d-flex justify-content-start align-items-center">
+        <div class="d-flex gap-3 me-5">
+            <img class="rounded rounded-circle" src="/media/{{question.student.studentprofile.profilepic}}" width="50px" height="50px" alt="" srcset="">
+            <div class="">
+                <h5 class="mb-1">{{question.student}}</h5>
+                <small class="text-muted">{{question.created|date:"M d, Y"}}</small>
+            </div>
+          </div>
+        <span class="badge bg-primary ms-5">
+            Student    
+        </span>
+    </h5>
+    <div class="card-body">
+        <h4 class="card-title px-2 py-4">{{question.question}}</h4>
+        <p class="px-4">{{question.detail|linebreaks}}​</p>
+    </div>
+  </div>
+  {% if user.is_teacher %}
+  <div class="form mb-4">
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" value="Answer" class="btn btn-primary">
+    </form>
+  </div>
+  {% endif %}
+  <div class="comment mb-4">
+    {% for answer in answers %}
+    <div class="card mb-3">
+        <h5 class="card-header w-100 py-3 px-5 d-flex justify-content-start align-items-center">
+            <div class="d-flex gap-3 me-5">
+                <img class="rounded rounded-circle" src="/media/{{answer.teacher.teacherprofile.profilepic}}" width="50px" height="50px" alt="" srcset="">
+                <div class="">
+                    <h5 class="mb-1">{{answer.teacher}}</h5>
+                    <small class="text-muted">{{answer.created|date:"M d, Y"}}</small>
+                </div>
+              </div>
+            <span class="badge bg-primary ms-5">
+                Teacher
+            </span>
+        </h5>
+        <div class="card-body">
+            <p class="card-text">{{answer.answer|linebreaks}}</p>
+        </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock body %}

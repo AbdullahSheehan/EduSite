@@ -19,6 +19,7 @@ class Article(models.Model):
     poster = models.ImageField(upload_to='Blog_Posters/')
 
     publish = models.DateTimeField(auto_now_add=True)
-
+    class Meta:
+        ordering = ['-publish']
     def __str__(self):
         return f"{self.title} by {self.author}"
