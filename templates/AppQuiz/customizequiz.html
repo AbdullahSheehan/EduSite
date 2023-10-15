@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+  Customize {{quiz.title}}
+{% endblock title %}
+{% block body %}
+    <div class="form">
+        <h3 class="mb-3">
+            Add Question
+        </h3>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form|crispy}}
+            <button type="submit" class="btn btn-success">Add +</button>
+        </form>
+    </div>
+  <table class="table table-bordered mt-5">
+    <thead>
+        <th>Question no.</th>
+        <th>Question</th>
+        <th>Option 1</th>
+        <th>Option 2</th>
+        <th>Option 3</th>
+        <th>Option 4</th>
+        <th>Correct Answer</th>
+    </thead>
+    <tbody>
+        {% for question in questions %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{question.question}}</td>
+            <td>{{question.option1}}</td>
+            <td>{{question.option2}}</td>
+            <td>{{question.option3}}</td>
+            <td>{{question.option4}}</td>
+            <td>{{question.correctOption}}</td>
+          </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock body %}

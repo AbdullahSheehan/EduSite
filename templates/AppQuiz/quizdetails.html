@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}
+  {{quiz.title}}
+{% endblock title %}
+{% block body %}
+<div class="card p-5 w-100 d-flex align-items-start">
+    <h3 class="card-title">{{quiz.title}}</h3>
+    <h6 class="card-subtitle">By {{quiz.teacher.first_name}} {{quiz.teacher.last_name}}</h6>
+    <small class="text-muted mb-4">{{quiz.date_created|date:'M d, Y'}}</small>
+    <p class="mb-4">{{quiz.description|linebreaks}}</p>
+    <a href="{% url 'AppQuiz:inquiz' pk=quiz.pk %}" class="btn btn-primary w-100 text-center">Take Quiz</a>
+  </div>
+{% endblock body %}

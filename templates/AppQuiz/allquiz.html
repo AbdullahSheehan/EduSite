@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load custom_filters2 %}
+{% block title %}
+  Participate & Test Yourself
+{% endblock title %}
+{% block body %}
+  {% for quiz in quizes %}
+    <div class="card p-5 w-50 d-flex align-items-center">
+      <div class="card-title">{{quiz.title}}</div>
+      <div class="card-subtitle mb-4">By {{quiz.teacher.first_name}} {{quiz.teacher.last_name}} |
+        <small class="text-muted">{{quiz.date_created|date:'M d, Y'}}</small>
+      </div>
+      
+      <p class="mb-4">{{quiz.description|ellipsis}}</p>
+      <a href="{% url 'AppQuiz:quizdetails' pk=quiz.pk %}" class="btn btn-primary w-100 text-center">Details</a>
+    </div>
+  {% endfor %}
+{% endblock body %}

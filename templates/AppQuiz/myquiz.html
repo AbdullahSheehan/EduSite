@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load custom_filters2 %}
+{% block title %}
+  My Quizes
+{% endblock title %}
+{% block body %}
+    <a href="{% url 'AppQuiz:createquiz' %}" class="btn btn-primary mb-5">Create Quiz +</a>
+  {% for quiz in quizes %}
+    {% if quiz.teacher == user %}
+        <div class="card p-5 w-50 d-flex align-items-center">
+          <div class="card-title">{{quiz.title}}</div>
+          <div class="card-subtitle mb-4">By {{quiz.teacher.first_name}} {{quiz.teacher.last_name}} |
+            <small class="text-muted">{{quiz.date_created|date:'M d, Y'}}</small>
+          </div>
+          <p class="mb-4">{{quiz.description|ellipsis}}</p>
+          <a href="{% url 'AppQuiz:customizequiz' pk=quiz.pk %}" class="btn btn-danger w-100 text-center mb-4">Customize</a>
+          <a href="{% url 'AppQuiz:quizresult' pk=quiz.pk %}" class="btn btn-success w-100">Result</a>
+        </div>
+    {% endif %}
+  {% endfor %}
+{% endblock body %}
