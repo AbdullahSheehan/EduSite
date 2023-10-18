@@ -4,7 +4,7 @@ from django import forms
 class CreateQuiz(forms.ModelForm):
     class Meta:
         model = Quiz
-        fields = ['title', 'description']
+        fields = ['title', 'description', 'duration']
         labels = {
             'title':'Quiz Name',
             'description': 'Quiz Description',
